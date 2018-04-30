@@ -1,0 +1,17 @@
+name: rss_reader
+version: 0.1.0
+
+authors:
+  - tomerun <tomerunmail@gmail.com>
+
+dependencies:
+  kemal:
+    github: kemalcr/kemal
+
+targets:
+  rss_reader:
+    main: src/rss_reader.cr
+
+crystal: 0.24.1
+
+license: MIT
