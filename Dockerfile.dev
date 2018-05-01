@@ -1,3 +1,4 @@
 FROM crystallang/crystal
 RUN useradd -m -s /bin/bash app
+RUN ln -s /usr/lib/x86_64-linux-gnu/libsqlite3.so.0.8.6 /usr/lib/x86_64-linux-gnu/libsqlite3.so
 EXPOSE 3001
