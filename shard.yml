@@ -7,10 +7,18 @@ authors:
 dependencies:
   kemal:
     github: kemalcr/kemal
+  sqlite3:
+    github: crystal-lang/crystal-sqlite3
+  crecto:
+    github: fridgerator/crecto
+  micrate:
+    github: amberframework/micrate
 
 targets:
   rss_reader:
     main: src/rss_reader.cr
+  micrate:
+    main: src/script/micrate.cr
 
 crystal: 0.24.1
 

@@ -2,5 +2,6 @@
 /lib/
 /bin/
 /.shards/
+*.bin
 *.sublime-project
 *.sublime-workspace

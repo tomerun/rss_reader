@@ -1,4 +1,5 @@
-FROM crystallang/crystal
+FROM crystallang/crystal:0.25.1
 RUN useradd -m -s /bin/bash app
 RUN ln -s /usr/lib/x86_64-linux-gnu/libsqlite3.so.0.8.6 /usr/lib/x86_64-linux-gnu/libsqlite3.so
+RUN echo "export DB_URL=sqlite3:~/rss_reader/db/database.bin" > /home/app/.bash_profile
 EXPOSE 3001

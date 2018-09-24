@@ -18,6 +18,8 @@ $ docker run -d --rm -it --name rss_app -p 3001:3001 -v `pwd`:/home/app/rss_read
 $ docker exec -it rss_app su - app
 $ cd rss_reader
 $ shards install
+# crystal build --release src/script/micrate.cr -o bin/micrate
+# bin/micrate up
 $ crystal run src/rss_reader.cr  # http://localhost:3001/
  
 $ docker stop rss_app
