@@ -7,7 +7,7 @@ authors:
 dependencies:
   kemal:
     github: kemalcr/kemal
-    version: ~> 0.23.0
+    version: ~> 0.25
   sqlite3:
     github: crystal-lang/crystal-sqlite3
   crecto:
@@ -21,6 +21,6 @@ targets:
   micrate:
     main: src/script/micrate.cr
 
-crystal: 0.25.1
+crystal: 0.27.0
 
 license: MIT
