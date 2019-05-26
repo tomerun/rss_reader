@@ -11,17 +11,24 @@ module MyRepo
 end
 
 class Feed < Crecto::Model
+  enum Type
+    RSS1,
+    RSS2,
+    ATOM
+  end
+
   schema "feeds" do
     field :name, String
     field :url, String
     field :link, String
     field :description, String
     field :date, Time
+    field :type, Type
   end
 
   has_many :entries, Entry
 
-  validate_required [:name, :url, :link]
+  validate_required [:name, :url, :link, :type]
 
   unique_constraint :url
 end

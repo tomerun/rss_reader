@@ -7,6 +7,7 @@ CREATE TABLE feeds (
 	link TEXT NOT NULL,
 	description TEXT,
 	date TEXT,
+	type INTEGER NOT NULL,
 	created_at TEXT,
 	updated_at TEXT
 );
