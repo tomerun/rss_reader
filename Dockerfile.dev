@@ -1,6 +1,6 @@
-FROM crystallang/crystal:0.27.0
-RUN useradd -m -s /bin/bash app
+FROM crystallang/crystal:0.28.0
+RUN useradd -m -s /bin/bash appuser
 RUN ln -s /usr/lib/x86_64-linux-gnu/libsqlite3.so.0.8.6 /usr/lib/x86_64-linux-gnu/libsqlite3.so
-RUN echo "export DB_URL=sqlite3:~/rss_reader/db/database.bin" > /home/app/.bash_profile &&\
-    echo "export KEMAL_ENV=development" >> /home/app/.bash_profile
+RUN echo "export DB_URL=sqlite3:~/rss_reader/db/database.bin" > /home/appuser/.bash_profile &&\
+    echo "export KEMAL_ENV=development" >> /home/appuser/.bash_profile
 EXPOSE 3001

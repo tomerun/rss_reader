@@ -1,57 +1,52 @@
 require "sqlite3"
-require "crecto"
+require "granite/adapter/sqlite"
 
-module MyRepo
-  extend Crecto::Repo
+Granite::Adapters << Granite::Adapter::Sqlite.new({name: "db", url: ENV["DB_URL"]})
 
-  config do |conf|
-    conf.adapter = Crecto::Adapters::SQLite3
-    conf.database = ENV["DB_URL"]
-  end
-end
+class Feed < Granite::Base
+  adapter db
 
-class Feed < Crecto::Model
   enum Type
     RSS1,
     RSS2,
     ATOM
   end
 
-  schema "feeds" do
-    field :name, String
-    field :url, String
-    field :link, String
-    field :description, String
-    field :date, Time
-    field :type, Type
-  end
+  field name : String
+  field url : String
+  field link : String
+  field description : String
+  field date : Time
+  field feed_type : Type
+  timestamps
 
-  has_many :entries, Entry
+  has_many :entries
 
-  validate_required [:name, :url, :link, :type]
-
-  unique_constraint :url
+  validate_not_blank :name
+  validate_not_blank :url
+  validate_uniqueness :url
+  validate_not_blank :link
+  validate_not_nil :feed_type
 end
 
-class Entry < Crecto::Model
-  schema "entries" do
-    field :feed_id, Int32
-    field :title, String
-    field :link, String
-    field :summary, String
-    field :content, String
-    field :seen, Bool, default: false
-    field :clicked, Bool, default: false
-    field :date, Time
-  end
+class Entry < Granite::Base
+  adapter db
 
-  belongs_to :feed, Feed
+  field feed_id : Int32
+  field title : String
+  field link : String
+  field summary : String
+  field content : String
+  field seen : Bool, default: false
+  field clicked : Bool, default: false
+  field date : Time
+  timestamps
 
-  validate_required [:title, :link, :seen, :clicked]
+  belongs_to :feed
 
-  unique_constraint :link
-end
-
-if ENV["ENABLE_DEBUG"]?
-  Crecto::DbLogger.set_handler(STDOUT)
+  validate_not_blank :title
+  validate_not_blank :link
+  validate_uniqueness :link
+  validate_not_nil :seen
+  validate_not_nil :clicked
 end

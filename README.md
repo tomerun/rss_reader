@@ -13,9 +13,9 @@ TODO: Write usage instructions here
 ## Development
 
 ```
-$ docker build -t tomerun/rss_dev -f Dockerfile.dev .
-$ docker run -d --rm -it --name rss_app -p 3001:3001 -v `pwd`:/home/app/rss_reader tomerun/rss_dev
-$ docker exec -it rss_app su - app
+$ docker build -t rss_dev -f Dockerfile.dev .
+$ docker run -d --rm -it --name rss_app -p 3001:3001 -v `pwd`:/home/appuser/rss_reader rss_dev
+$ docker exec -it rss_app su - appuser
 $ cd rss_reader
 $ shards install
 # crystal build --release src/script/micrate.cr -o bin/micrate

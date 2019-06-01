@@ -7,7 +7,7 @@ CREATE TABLE feeds (
 	link TEXT NOT NULL,
 	description TEXT,
 	date TEXT,
-	type INTEGER NOT NULL,
+	feed_type INTEGER NOT NULL,
 	created_at TEXT,
 	updated_at TEXT
 );
@@ -25,6 +25,7 @@ CREATE TABLE entries (
 	created_at TEXT,
 	updated_at TEXT
 );
+CREATE INDEX entries_feed ON entries(feed_id);
 
 -- +micrate Down
 -- SQL section 'Down' is executed when this migration is rolled back
